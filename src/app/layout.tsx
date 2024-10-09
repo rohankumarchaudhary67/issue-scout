@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "GSOC Issue Tracker",
+  title: "Issue Scout | GSOC Issue Tracker",
 };
 
 export default function RootLayout({
