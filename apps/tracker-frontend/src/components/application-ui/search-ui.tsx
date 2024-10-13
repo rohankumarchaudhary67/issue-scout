@@ -23,7 +23,6 @@ export default function SearchUI() {
                     rec.toLowerCase().includes(trimmedInput.toLowerCase())
                 )
                 .filter((rec: string) => !tags.includes(rec)) // Exclude already selected tags
-                .slice(0, 7); // Limit to 7 recommendations
         }
 
         // Filter recommendations based on any characters in the input
@@ -119,7 +118,7 @@ export default function SearchUI() {
 
             {/* Recommendation dropdown */}
             {inputValue && isDropdownOpen && filteredRecommendations.length > 0 && (
-                <div className="absolute z-10 w-full mt-2 bg-background border rounded-md shadow-lg">
+                <div className="absolute z-10 w-full mt-2 bg-background border rounded-md shadow-lg max-h-60 overflow-y-auto">
                     {filteredRecommendations.map((rec, index) => (
                         <div
                             key={index}
