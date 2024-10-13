@@ -1,45 +1,38 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import FilterTagsUI from "@/components/application-ui/filter-tags-ui";
+import IssueCardUI from "@/components/application-ui/issue-card-ui";
+import PaginationDemo from "@/components/application-ui/pagination-ui";
+import SearchUI from "@/components/application-ui/search-ui";
 
 export default function Home() {
-  return (
-    <>
-      <div className="flex justify-center items-center min-h-screen">
-        <Card>
-          <CardHeader className="flex justify-center items-center">
-            <CardTitle>Issue Scout</CardTitle>
-            <CardDescription>GSoC Issue Tracker</CardDescription>
-          </CardHeader>
-          <CardContent className="max-w-96 text-center">
-            <ul className="list-disc list-inside text-left">
-              <li>
-                Discover issues from GSOC-participating organizations, filtered by difficulty, tech stack, and project domain.
-              </li>
-              <li>
-                Access detailed issue descriptions to better understand project needs and enhance teamwork.
-              </li>
-              <li>
-                Quickly find suitable tasks, making open-source contributions easier and more effective.
-              </li>
-            </ul>
-          </CardContent>
-          <CardFooter>
-            <Button className="w-full">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792">
-                <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path>
-              </svg>
-              Continue with GitHub
-            </Button>
-          </CardFooter>
-        </Card>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="px-32 py-6">
+                <SearchUI />
+                <div className="flex">
+                    <FilterTagsUI tag={"2024"} />
+                    <FilterTagsUI tag={"Bugs"} />
+                    <FilterTagsUI tag={"Good First Issues"} />
+                    <FilterTagsUI tag={"Chromium"} />
+                    <FilterTagsUI tag={"2022"} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                    <IssueCardUI />
+                </div>
+                <div className="flex justify-center items-center py-4">
+                    <PaginationDemo />
+                </div>
+            </div>
+        </>
+    );
 }
