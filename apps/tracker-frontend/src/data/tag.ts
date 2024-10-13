@@ -1,0 +1,1 @@
+export const recommendations_tags = ["Bugs", "Good First Issues", "Easy", "Medium", "Hard", "Enhancement", "Documentation", "Refactor", "Feature", "Design", "Performance", "frontend", "backend", "API", "database", "securtiy", "testing"]

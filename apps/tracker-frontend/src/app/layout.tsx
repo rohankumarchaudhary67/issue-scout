@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+import RecoilProvider from "@/providers/recoil-provider";
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "Issue Scout | GSoC Issue Tracker",
@@ -26,7 +28,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <RecoilProvider>
+            {children}
+            <Toaster />
+          </RecoilProvider>
         </ThemeProvider>
       </body>
     </html>
