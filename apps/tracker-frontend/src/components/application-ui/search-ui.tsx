@@ -1,11 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { Input } from "../ui/input";
 import { useRecoilState } from "recoil";
-import { recommendations_tags } from "@/data/tag";
 import { tagAtom } from "@/atoms/tag-atom";
 import { toast } from "sonner";
 
-export default function SearchUI() {
+interface SearchUIProps {
+    recommendations_tags: string[]; // Define the type for recommendations_tags
+}
+
+export default function SearchUI({recommendations_tags}: SearchUIProps) {
+    console.log(recommendations_tags);
     const [inputValue, setInputValue] = useState("");
     const [tags, setTags] = useRecoilState(tagAtom);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -94,7 +98,7 @@ export default function SearchUI() {
                 value={inputValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
-                placeholder="Find issues according to you..."
+                placeholder="Search by organizations..."
                 className="pl-10 pr-4"
             />
 
