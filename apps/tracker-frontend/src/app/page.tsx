@@ -79,7 +79,7 @@ export default function Home() {
     <>
       <div className="flex justify-center items-center gap-3 py-4">
         <img src="/logo/logo-wbg.png" className="h-8" alt="Logo" />
-        <h1 className="text-2xl font-bold">Issue Scout</h1>
+        <h1 className="text-2xl font-bold">Issue Scout | GSoC Issue Tracker</h1>
       </div>
       <div className="px-3 md:px-32 pb-6">
         <SearchUI recommendations_tags={recommendations_tags} />
