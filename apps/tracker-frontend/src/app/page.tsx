@@ -18,15 +18,14 @@ interface Issue {
   repository: string;
 }
 
-
 export default function Home() {
   const tags = useRecoilValue(tagAtom);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 18; // Adjust the number of items per page
+  const itemsPerPage = 9; // Adjust the number of items per page
   const [issues, setIssues] = useState<Issue[]>([]);
-  const totalPages = Math.ceil(issues.length / itemsPerPage);
+  const [filterIssue, setFilterIssue] = useState<Issue[]>([]);
 
   const fetchIssues = async () => {
     try {
@@ -37,13 +36,16 @@ export default function Home() {
     }
   };
 
+  // Calculate filtered issues and total pages
   const recommendations_tags = Array.from(
     new Set(issues.flatMap(issue => issue.repository.split('/')))
   );
-  
+
+  const filteredIssues = tags.length === 0 ? issues : filterIssue;
+  const totalPages = Math.ceil(filteredIssues.length / itemsPerPage);
 
   // Get the issues for the current page
-  const paginatedIssues = issues.slice(
+  const paginatedIssues = filteredIssues.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -56,6 +58,22 @@ export default function Home() {
   useEffect(() => {
     fetchIssues();
   }, []);
+
+  // Filter issues based on tags
+  useEffect(() => {
+    if (tags.length === 0) {
+      setFilterIssue(issues); // If no tags are selected, show all issues
+      return;
+    }
+
+    const filtered = issues.filter(issue =>
+      tags.some(tag => 
+        issue.repository.startsWith(tag) || issue.repository.endsWith(tag)
+      )
+    );
+
+    setFilterIssue(filtered);
+  }, [tags, issues]);
 
   return (
     <>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Issue } from '../models/issues.model'; // Assuming Issues is the Mongoose model
 
 const fetchIssues = async (): Promise<void> => {
-    const repos: string[] = ['dubinc/dub']; // Replace with your target repos
+    const repos: string[] = ['dubinc/dub', 'code100x/cms', 'calcom/cal.com']; // Replace with your target repos
     const githubToken = process.env.GITHUB_TOKEN;
 
     if (!githubToken) {
@@ -43,13 +43,13 @@ const fetchIssues = async (): Promise<void> => {
                 repository: repo,
             }));
 
-            // Remove all previous issues from the database
-            await Issue.deleteMany({});
+            // Remove previous issues for the specific repo from the database
+            await Issue.deleteMany({ repository: repo });
 
             // Insert all fetched issues into the database
             await Issue.insertMany(issues);
 
-            console.log('Issues successfully fetched and updated in the database.');
+            console.log(`Issues for ${repo} successfully fetched and updated in the database.`);
         } catch (error) {
             console.error(`Error fetching issues for ${repo}:`, error);
         }
