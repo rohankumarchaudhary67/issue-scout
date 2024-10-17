@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Issue } from '../models/issues.model'; // Assuming Issues is the Mongoose model
 
 const fetchIssues = async (): Promise<void> => {
-    const repos: string[] = ['dubinc/dub', 'code100x/cms', 'calcom/cal.com']; // Replace with your target repos
+    const repos: string[] = ['dubinc/dub', 'code100x/cms', 'calcom/cal.com', 'processing/p5.js-web-editor', 'processing/p5.js-website', 'connieliu0/p5.js-showcase', 'processing/p5.js', 'apache/apisix-website', 'apache/apisix-dashboard', 'RocketChat/Rocket.Chat', 'scorelab/Webiu', 'chromium/chromium', 'kubernetes/kubernetes']; // Replace with your target repos
     const githubToken = process.env.GITHUB_TOKEN;
 
     if (!githubToken) {
