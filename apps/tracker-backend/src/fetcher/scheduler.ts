@@ -3,7 +3,7 @@ import fetchIssues from './fetch-Issues';
 
 const scheduler = {
     start: (): void => {
-        cron.schedule('* * * * *', () => {
+        cron.schedule('0 */6 * * *', () => {
             console.log('Fetching issues from GitHub...');
             fetchIssues()
                 .then(() => console.log('Issues fetched and stored'))
