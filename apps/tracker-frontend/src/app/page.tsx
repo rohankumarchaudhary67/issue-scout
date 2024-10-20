@@ -82,9 +82,16 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex justify-center items-center gap-3 py-4">
+      <div className="hidden md:flex justify-center items-center gap-3 py-4">
         <img src="/logo/logo-wbg.png" className="h-8" alt="Logo" />
         <h1 className="text-2xl font-bold">Issue Scout | GSoC Issue Tracker</h1>
+      </div>
+      <div className="md:hidden flex justify-center items-center flex-col pb-3">
+        <div className="flex justify-center items-center gap-2 pt-2">
+          <img src="/logo/logo-wbg.png" className='h-8' alt="" />
+          <h1 className="text-2xl font-bold">Issue Scout</h1>
+        </div>
+        <h1 className="text-2xl font-bold">GSoC Issue Tracker</h1>
       </div>
       <div className="px-3 md:px-32 pb-6">
         <SearchUI recommendations_tags={recommendations_tags} />
