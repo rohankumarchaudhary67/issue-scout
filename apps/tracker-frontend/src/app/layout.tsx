@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import RecoilProvider from "@/providers/recoil-provider";
 import { Toaster } from "@/components/ui/sonner"
+import LoadingSpinner from "@/components/application-ui/loading";
 
 export const metadata: Metadata = {
   title: "Issue Scout | GSoC Issue Tracker",
@@ -29,6 +30,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <RecoilProvider>
+            <LoadingSpinner />
             {children}
             <Toaster />
           </RecoilProvider>

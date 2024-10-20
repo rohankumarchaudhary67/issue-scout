@@ -4,9 +4,10 @@ import FilterTagsUI from "@/components/application-ui/filter-tags-ui";
 import IssueCardUI from "@/components/application-ui/issue-card-ui";
 import PaginationDemo from "@/components/application-ui/pagination-ui";
 import SearchUI from "@/components/application-ui/search-ui";
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { tagAtom } from '@/atoms/tag-atom';
 import axios from 'axios';
+import { loadingAtom } from '@/atoms/loading-atom';
 
 interface Issue {
   githubId: number;
@@ -26,12 +27,16 @@ export default function Home() {
   const itemsPerPage = 9; // Adjust the number of items per page
   const [issues, setIssues] = useState<Issue[]>([]);
   const [filterIssue, setFilterIssue] = useState<Issue[]>([]);
+  const setLoading = useSetRecoilState(loadingAtom);
 
   const fetchIssues = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_DOMAIN}/api/v1/get-issues`);
       setIssues(response.data.data); // Ensure this matches your API response structure
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.error('Error fetching issues:', error);
     }
   };
@@ -67,7 +72,7 @@ export default function Home() {
     }
 
     const filtered = issues.filter(issue =>
-      tags.some(tag => 
+      tags.some(tag =>
         issue.repository.startsWith(tag) || issue.repository.endsWith(tag)
       )
     );
@@ -100,7 +105,7 @@ export default function Home() {
               issue={issue.title}
               issueNumber={issue.issueNumber}
               issueLink={issue.issueURL} // Pass the issue URL if needed
-              state={issue.state} 
+              state={issue.state}
               noOfComments={issue.comments} // Pass comments if you want to display them
             />
           ))}
